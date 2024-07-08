@@ -9,7 +9,7 @@ if is_windows then
   local file = io.open(scoop_shims, "r")
   if file then
     file:close()
-    vim.o.shell = scoop_shims
-    vim.o.shellcmdflag = "-c"
+    vim.opt.shell = scoop_shims
+    vim.opt.shellcmdflag = "-c"
   end
 end
