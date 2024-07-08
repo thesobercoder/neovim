@@ -5,6 +5,11 @@
 -- Set shell to bash on Windows
 local is_windows = vim.loop.os_uname().sysname == "Windows"
 if is_windows then
-  vim.opts.shell = "<Path to bash>/bash.exe"
-  vim.opts.shellcmdflag = "-c"
+  local scoop_shims = os.getenv("USERPROFILE") .. "\\.scoop\\shims\\bash.exe"
+  local file = io.open(scoop_shims, "r")
+  if file then
+    file:close()
+    vim.o.shell = scoop_shims
+    vim.o.shellcmdflag = "-c"
+  end
 end
